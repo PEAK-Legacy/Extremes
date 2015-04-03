@@ -16,13 +16,13 @@ Some simple usage examples::
     >>> from peak.util.extremes import Min, Max
     >>> import sys
 
-    >>> Min < -sys.maxint
+    >>> Min < -(1<<31)
     True
     >>> Min < None
     True
     >>> Min < ''
     True
-    >>> Max > sys.maxint
+    >>> Max > (1<<31)
     True
     >>> Max > 99999999999999999
     True

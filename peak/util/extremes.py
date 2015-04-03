@@ -32,7 +32,7 @@ class Extreme(object):     # Courtesy of PEP 326
         return self.__cmp__(other)>=0
 
     def __ne__(self,other):
-        return self.__cmp__(other)<>0
+        return self.__cmp__(other)!=0
 
 Max = Extreme(1, "Max")
 Min = Extreme(-1, "Min")
@@ -46,11 +46,10 @@ def additional_tests():
         optionflags=doctest.ELLIPSIS|doctest.NORMALIZE_WHITESPACE,
     )
 
-
-
-
-
-
+try:
+    cmp
+except NameError:
+    cmp = lambda a, b: (a > b) - (a < b)
 
 
 
