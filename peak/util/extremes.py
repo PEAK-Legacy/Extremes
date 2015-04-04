@@ -34,10 +34,10 @@ class Extreme(object):     # Courtesy of PEP 326
     def __ne__(self,other):
         return self.__cmp__(other)!=0
 
+    __hash__ = object.__hash__
+
 Max = Extreme(1, "Max")
 Min = Extreme(-1, "Min")
-
-
 
 def additional_tests():
     import doctest

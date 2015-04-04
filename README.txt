@@ -14,15 +14,18 @@ be used independently.
 Some simple usage examples::
 
     >>> from peak.util.extremes import Min, Max
-    >>> import sys
+    >>> try:
+    ...    from sys import maxint
+    ... except ImportError:
+    ...    maxint = (1<<64)
 
-    >>> Min < -(1<<31)
+    >>> Min < -maxint
     True
     >>> Min < None
     True
     >>> Min < ''
     True
-    >>> Max > (1<<31)
+    >>> Max > maxint
     True
     >>> Max > 99999999999999999
     True
@@ -32,7 +35,10 @@ Some simple usage examples::
 
 The ``Min`` object compares less than any other object but itself, while the
 ``Max`` object compares greater than any other object but itself.  Both are
-instances of the ``Extreme`` type.
+instances of the ``Extreme`` type, are hashable, and can be used as
+dictionary keys:
+
+    >>> x = {Min: 1, Max: 2}
 
 While the original PEP 326 implementation of these extreme values is shorter
 than the version used here, it contains a flaw: it does not correctly handle
